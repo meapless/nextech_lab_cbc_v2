@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Understanding the Kenyan CBC Learning System</title>
+  <meta name="description" content="A detailed overview of Kenya's Competency-Based Curriculum (CBC) - learning levels, pathways, and subjects.">
+  <meta name="keywords" content="Kenyan CBC, Curriculum, Education, KICD, Ministry of Education">
+  <meta name="author" content="Bonface Mailu">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f4f4f4, #e0e7ff);
+      color: #2d2d2d;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(90deg, #006400, #228B22);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+
+    nav {
+      background: #1a3c34;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: none;
+      border: 2px solid transparent;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 400;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: #FFD700;
+      color: #1a3c34;
+      border-color: #FFD700;
+      transform: translateY(-2px);
+    }
+
+    .section {
+      display: none;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .section.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .level-card,
+    .pathway-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 1rem 0;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .level-card:hover,
+    .pathway-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .level-card h3,
+    .pathway-card h3 {
+      color: #006400;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .level-card h3::before,
+    .pathway-card h3::before {
+      content: '📚';
+      font-size: 1.5rem;
+    }
+
+    .pathway-card {
+      background: #fff5cc;
+      border-left: 6px solid #FFD700;
+    }
+
+    .grade-card {
+      background: #e6f3ff;
+      border-left: 6px solid #0066cc;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: 10px;
+    }
+
+    .subject-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .subject-list li {
+      background: #fff;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid #cc6600;
+      transition: background 0.3s ease;
+    }
+
+    .subject-list li:hover {
+      background: #f9e6cc;
+    }
+
+    .outcomes {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0.3rem;
+      font-style: italic;
+    }
+
+    .back-btn {
+      background: #cc6600;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .back-btn:hover {
+      background: #e67e22;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: #1a3c34;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+      width: 100%;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #FFD700;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      header p { font-size: 1rem; }
+      nav button { font-size: 0.9rem; padding: 0.6rem 1rem; }
+      .level-card h3, .pathway-card h3 { font-size: 1.5rem; }
+      .section { padding: 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Kenyan Competency-Based Curriculum (CBC)</h1>
+    <p>Empowering Learners: From Foundations to Future Careers</p>
+  </header>
+
+  <nav role="navigation" aria-label="CBC Level Navigation">
+    <button onclick="showSection('levels', this)" class="active">CBC Levels</button>
+    <button onclick="showSection('primary', this)">Primary School</button>
+    <button onclick="showSection('junior', this)">Junior Secondary</button>
+    <button onclick="showSection('senior', this)">Senior Secondary</button>
+  </nav>
+
+  <section id="levels" class="section active">
+    <h2>Explore CBC Learning Levels (2-6-3-3)</h2>
+    <div class="level-card">
+      <h3>Early Years Education (Pre-Primary 1 & 2)</h3>
+      <p>Ages 4–5: Play-based learning to spark creativity, social skills, and motor development.</p>
+      <button class="back-btn" onclick="showSection('levels', this)">Stay Here</button>
+    </div>
+    <div class="level-card">
+      <h3>Lower Primary (Grades 1–3)</h3>
+      <p>Ages 6–8: Foundational literacy, numeracy, and life skills through hands-on activities.</p>
+      <button class="back-btn" onclick="showSection('primary', this)">Explore Primary →</button>
+    </div>
+    <div class="level-card">
+      <h3>Upper Primary (Grades 4–6)</h3>
+      <p>Ages 9–11: Broadening knowledge with integrated subjects and critical thinking.</p>
+      <button class="back-btn" onclick="showSection('primary', this)">Explore Primary →</button>
+    </div>
+    <div class="level-card">
+      <h3>Junior Secondary (Grades 7–9)</h3>
+      <p>Ages 12–14: Core competencies and exploration; KILEA assessment at Grade 9.</p>
+      <button class="back-btn" onclick="showSection('junior', this)">Explore Junior Secondary →</button>
+    </div>
+    <div class="level-card">
+      <h3>Senior Secondary (Grades 10–12)</h3>
+      <p>Ages 15–17: Specialized pathways aligned with interests and career goals.</p>
+      <button class="back-btn" onclick="showSection('senior', this)">Explore Senior Secondary →</button>
+    </div>
+  </section>
+
+  <!-- Primary Section -->
+  <section id="primary" class="section">
+    <h2>Primary School (Grades 1–6)</h2>
+    <p>Focus: Building foundational competencies through engaging, integrated learning areas.</p>
+    <div class="level-card">
+      <h3>Core Learning Areas for Grades 1–6</h3>
+      <ul class="subject-list">
+        <li><strong>English Language</strong><br><span class="outcomes">Listening, speaking, reading, and writing skills.</span></li>
+        <li><strong>Kiswahili / Kenya Sign Language</strong><br><span class="outcomes">Bilingual skills and cultural appreciation.</span></li>
+        <li><strong>Mathematics</strong><br><span class="outcomes">Logical thinking and real-world math applications.</span></li>
+        <li><strong>Environmental Activities / Science & Technology</strong><br><span class="outcomes">Inquiry-based science and awareness.</span></li>
+        <li><strong>Social Studies</strong><br><span class="outcomes">History, geography, and citizenship education.</span></li>
+        <li><strong>Hygiene & Nutrition / Physical & Health Education</strong><br><span class="outcomes">Healthy lifestyles and physical fitness.</span></li>
+        <li><strong>Religious Education</strong><br><span class="outcomes">Moral values and ethical decision-making.</span></li>
+        <li><strong>Creative Arts</strong><br><span class="outcomes">Music, arts, and crafts for creativity.</span></li>
+        <li><strong>Home Science</strong><br><span class="outcomes">Practical household management skills.</span></li>
+        <li><strong>Agriculture</strong><br><span class="outcomes">Farming basics and sustainability.</span></li>
+      </ul>
+    </div>
+    <p><em>Grades 1–3 focus on activities; Grades 4–6 introduce structured subjects. Assessed via KPSEA at Grade 6.</em></p>
+    <button class="back-btn" onclick="showSection('levels', this)">← Back to Levels</button>
+  </section>
+
+  <!-- Junior Section -->
+  <section id="junior" class="section">
+    <h2>Junior Secondary (Grades 7–9)</h2>
+    <p>Focus: Broad skill development to prepare for specialized pathways. KILEA at Grade 9.</p>
+    <div class="level-card">
+      <h3>Core Subjects for Grades 7–9</h3>
+      <ul class="subject-list">
+        <li><strong>English</strong><br><span class="outcomes">Advanced communication and literary analysis.</span></li>
+        <li><strong>Kiswahili / KSL</strong><br><span class="outcomes">In-depth language skills and literature.</span></li>
+        <li><strong>Mathematics</strong><br><span class="outcomes">Algebra, geometry, and real-life applications.</span></li>
+        <li><strong>Integrated Science</strong><br><span class="outcomes">Biology, chemistry, and physics basics.</span></li>
+        <li><strong>Social Studies</strong><br><span class="outcomes">History, geography, and civics.</span></li>
+        <li><strong>Business Studies</strong><br><span class="outcomes">Entrepreneurship and financial literacy.</span></li>
+        <li><strong>Agriculture</strong><br><span class="outcomes">Agribusiness and environmental awareness.</span></li>
+        <li><strong>Pre-Technical & Pre-Vocational Studies</strong><br><span class="outcomes">ICT, woodwork, and metalwork basics.</span></li>
+        <li><strong>Religious Education</strong><br><span class="outcomes">Ethical reasoning and interfaith respect.</span></li>
+        <li><strong>Life Skills Education</strong><br><span class="outcomes">Emotional intelligence and decision-making.</span></li>
+        <li><strong>Physical & Health Education</strong><br><span class="outcomes">Fitness and health awareness.</span></li>
+        <li><strong>Creative Arts & Sports</strong><br><span class="outcomes">Teamwork and artistic expression.</span></li>
+        <li><strong>Foreign Language (Optional)</strong><br><span class="outcomes">Conversational and cultural exchange.</span></li>
+      </ul>
+    </div>
+    <button class="back-btn" onclick="showSection('levels', this)">← Back to Levels</button>
+  </section>
+
+  <!-- Senior Section -->
+  <section id="senior" class="section">
+    <h2>Senior Secondary (Grades 10–12)</h2>
+    <p>Focus: Specialization in one of three pathways plus core subjects (English, Kiswahili/KSL, Community Service, Physical Education).</p>
+
+    <div class="pathway-card">
+      <h3>STEM Pathway</h3>
+      <p>Careers: Engineering, Medicine, IT, Research.</p>
+      <ul class="subject-list">
+        <li><strong>Mathematics</strong><br><span class="outcomes">Calculus, statistics, and data analysis.</span></li>
+        <li><strong>Physics</strong><br><span class="outcomes">Mechanics, electricity, and innovation.</span></li>
+        <li><strong>Chemistry</strong><br><span class="outcomes">Organic and inorganic chemistry.</span></li>
+        <li><strong>Biology</strong><br><span class="outcomes">Genetics and health sciences.</span></li>
+        <li><strong>Computer Science</strong><br><span class="outcomes">Programming, AI, and algorithms.</span></li>
+        <li><strong>Aviation / Geospatial Technology</strong><br><span class="outcomes">Aerospace and GIS mapping.</span></li>
+      </ul>
+    </div>
+
+    <div class="pathway-card">
+      <h3>Social Sciences Pathway</h3>
+      <p>Careers: Law, Journalism, Business, Governance.</p>
+      <ul class="subject-list">
+        <li><strong>History & Citizenship</strong><br><span class="outcomes">Governance and civic leadership.</span></li>
+        <li><strong>Geography</strong><br><span class="outcomes">Sustainability and resource management.</span></li>
+        <li><strong>Economics / Business Studies</strong><br><span class="outcomes">Markets and entrepreneurship.</span></li>
+        <li><strong>Psychology / Sociology</strong><br><span class="outcomes">Human behavior and social policy.</span></li>
+        <li><strong>Literature</strong><br><span class="outcomes">Cultural and critical analysis.</span></li>
+        <li><strong>Entrepreneurship</strong><br><span class="outcomes">Innovation and business planning.</span></li>
+      </ul>
+    </div>
+
+    <div class="pathway-card">
+      <h3>Arts & Sports Science Pathway</h3>
+      <p>Careers: Media, Design, Coaching, Arts.</p>
+      <ul class="subject-list">
+        <li><strong>Music / Fine Art / Performing Arts</strong><br><span class="outcomes">Creative performance and expression.</span></li>
+        <li><strong>Media Studies</strong><br><span class="outcomes">Journalism and digital media.</span></li>
+        <li><strong>Physical Education & Sports Science</strong><br><span class="outcomes">Athlete training and health.</span></li>
+        <li><strong>Creative Writing</strong><br><span class="outcomes">Storytelling and scripting.</span></li>
+        <li><strong>Indigenous Languages</strong><br><span class="outcomes">Cultural preservation and identity.</span></li>
+        <li><strong>Drawing & Design</strong><br><span class="outcomes">Graphics and visual design.</span></li>
+      </ul>
+    </div>
+
+    <p><em>Assessment: Continuous + National Exam at Grade 12. Pathways based on Grade 9 performance.</em></p>
+    <button class="back-btn" onclick="showSection('levels', this)">← Back to Levels</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Kenyan CBC Infographic. Source: <a href="https://kicd.ac.ke" target="_blank">KICD</a> & Ministry of Education.</p>
+  </footer>
+
+  <script>
+    function showSection(sectionId, el) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      el.classList.add('active');
+    }
+  </script>
+</body>
+</html>
