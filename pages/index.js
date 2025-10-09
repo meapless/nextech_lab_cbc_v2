@@ -7,17 +7,19 @@ export default function Home(){
         <h1 style={{margin:0,fontSize:28}}>NexTech Lab — CBC Learning Hub</h1>
         <p style={{marginTop:6}}>PP1 & PP2 • Simple interactive activities</p>
       </header>
+
       <nav className="nav">
         <Link href="/">Home</Link>
         <Link href="/learning-areas">Learning Areas</Link>
         <Link href="/about">About</Link>
       </nav>
+
       <main className="container">
         <section className="card" style={{textAlign:'center'}}>
           <h2 style={{color:'#064e3b'}}>Welcome Teachers & Parents</h2>
           <p className="small">A lightweight Next.js starter to showcase CBC activities for pre-primary learners (PP1 & PP2).</p>
           <div style={{marginTop:16}}>
-            <Link href="/learning-areas" legacyBehavior><button className="btn">Explore Learning Areas</button></Link>
+            <Link href="/learning-areas"><button className="btn">Explore Learning Areas</button></Link>
           </div>
         </section>
 
@@ -56,10 +58,11 @@ export default function Home(){
           </div>
         </section>
       </main>
+
       <footer className="footer">
         <div>NexTech Lab • 2025</div>
-        <div style={{fontSize:12, marginTop:6}}>Built for Next.js group project</div>
+        <div style={{fontSize:12, marginTop:6}}>Built for a 1-week Next.js group project</div>
       </footer>
     </div>
-  );
+  )
 }
