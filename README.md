@@ -1,6 +1,6 @@
 NexTech Lab — CBC Learning Hub (PP1 & PP2) — Next.js Starter
 
-Project ready for your group. Features:
+The Project Features:
 - Home page (NexTech Lab branding)
 - Learning Areas (Language, Math, Environment, Creative, Religious)
 - Activities pages for each area
